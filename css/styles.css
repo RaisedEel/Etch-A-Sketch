@@ -1,5 +1,36 @@
+.main{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+#controls{
+    display: flex;
+    flex-direction: column;
+}
+
 #grid{
+    flex-shrink: 0;
     border: 2px solid gray;
     display: flex;
     flex-wrap: wrap;
+}
+
+#slider{
+    background-color: gray;
+    width: 250px;
+    height: 15px;
+    margin: 15px 0;
+    border-radius: 10px;
+}
+
+#dot{
+    position: relative;
+    top: -7.5px;
+    left: 85px;
+    background-color: black;
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 50%;
 }
