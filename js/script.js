@@ -15,18 +15,30 @@ document.getElementById("redraw").addEventListener("click", redrawGrid);
 document.getElementById("clear").addEventListener("click", clearGrid);
 
 let buttonsMode = document.getElementsByClassName("mode");
+let colorMenu = document.getElementById("normal-submenu")
 
-buttonsMode[0].addEventListener("click", event => {
+buttonsMode[0].addEventListener("click", () => {
     gridMode = "normal";
-    event.target.nextElementSibling.classList.toggle("hidden");
+    colorMenu.classList.toggle("hidden");
+    buttonsMode[0].classList.toggle("selected");
+    buttonsMode[1].classList.remove("selected");
+    buttonsMode[2].classList.remove("selected");
 });
 
 buttonsMode[1].addEventListener("click", () => {
     gridMode = "rainbow";
+    colorMenu.classList.add("hidden");
+    buttonsMode[1].classList.toggle("selected");
+    buttonsMode[0].classList.remove("selected");
+    buttonsMode[2].classList.remove("selected");
 });
 
 buttonsMode[2].addEventListener("click", () =>  {
-    gridMode = "grayscale";
+    gridMode = "shader";
+    colorMenu.classList.add("hidden");
+    buttonsMode[2].classList.toggle("selected");
+    buttonsMode[0].classList.remove("selected");
+    buttonsMode[1].classList.remove("selected");
 })
 
 colorInput.addEventListener("change", () => {
@@ -45,7 +57,19 @@ function clearGrid(){
     });
 }
 
-let modeButtons = document.querySelectorAll("button");
+function shaderSteps(colors){
+    let darkenPorcentages = colors.map(value =>{
+        return value * 0.1;
+    });
+
+    return darkenPorcentages;
+}
+
+function initSteps(square){
+    square.dataset.step1 = 0;
+    square.dataset.step2 = 0;
+    square.dataset.step3 = 0;
+}
 
 function drawGrid(numSquares){
     for(let i = 0; i < (numSquares * numSquares); i++){
@@ -53,24 +77,31 @@ function drawGrid(numSquares){
         square.style.backgroundColor = GRID_BASE_COLOR;
         square.style.width = (GRID_SIDES / numSquares) + "px";
         square.style.height = (GRID_SIDES / numSquares) + "px";
+        initSteps(square);
         square.addEventListener("mouseenter", event => {
             if(gridMode === "normal"){
+                initSteps(square);
                 square.style.backgroundColor = gridNewColor;
             }else if(gridMode === "rainbow"){
+                initSteps(square);
                 square.style.backgroundColor = `rgb(${Math.ceil(Math.random() * 256)},
                 ${Math.ceil(Math.random() * 256)},${Math.ceil(Math.random() * 256)})`;
             }else{
                 let colors = square.style.backgroundColor.slice(4,-1).split(",");
-                square.style.backgroundColor = `rgb(${Math.ceil(colors[0] - 25.5)},
-                ${Math.ceil(colors[1] - 25.5)},${Math.ceil(colors[2] - 25.5)})`;
+                if(square.dataset.step1 === "0" && square.dataset.step2 === "0" && square.dataset.step3 === "0"){
+                    let steps = shaderSteps(colors);
+                    square.dataset.step1 = steps[0];
+                    square.dataset.step2 = steps[1];
+                    square.dataset.step3 = steps[2];
+                }
+                square.style.backgroundColor = `rgb(${Math.ceil(colors[0] - square.dataset.step1)},
+                ${Math.ceil(colors[1] - square.dataset.step2)},${Math.ceil(colors[2] - square.dataset.step3)})`;
             }
             event.preventDefault();
         });
-    
         grid.appendChild(square);
     }
 }
-
 
 // Slider Code
 let slider = document.getElementById("slider");

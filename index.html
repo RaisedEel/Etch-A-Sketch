@@ -14,17 +14,17 @@
         <div id = "controls">
             <h2>CONTROLS</h2>
             <h3>MODES OF DRAWING</h3>
-            <button id = "normal" class = "mode">NORMAL MODE</button>
-            <div>
+            <button id = "normal" class = "mode selected">NORMAL MODE</button>
+            <div id = "normal-submenu">
                 <label for = "color">Color of Square: </label>
                 <input id = "color" type = "color" value = "#000000">  
             </div>
             <button id = "rainbow" class = "mode">RAINBOW MODE</button>
-            <button id = "scalegray" class = "mode">GRAYSCALE MODE</button>
+            <button id = "shader" class = "mode">SHADER MODE</button>
             <h3>CLEAR/REDRAW GRID </h3> 
             <button id = "clear">CLEAR GRID</button>
-            <div style="display: flex;">
-                <div id = "sliderValue"></div>
+            <div>
+                <label id = "sliderValue" for = "redraw"></label>
                 <button id = "redraw">REDRAW GRID</button>
             </div>
             <div id = "slider">
