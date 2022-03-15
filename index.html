@@ -4,34 +4,37 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Etch</title>
+    <title>Etch-A-Sketch</title>
 
     <link href = "./css/styles.css" rel = "stylesheet">
     <script src = "./js/script.js" defer></script>
 </head>
 <body>
     <div class = "main">
-        <div id = "controls">
-            <h2>CONTROLS</h2>
-            <h3>MODES OF DRAWING</h3>
-            <button id = "normal" class = "mode selected">NORMAL MODE</button>
-            <div id = "normal-submenu">
-                <label for = "color">Color of Square: </label>
-                <input id = "color" type = "color" value = "#000000">  
+        <div id = "title"><strong>SIMPLE ETCH-A-SKETCH</strong> <em>by Raised Eel 🐍</em></div>
+        <div id = "content">
+            <div id = "controls">
+                <h2>CONTROLS</h2>
+                <h3>MODES OF DRAWING</h3>
+                <button id = "normal" class = "mode btn selected">NORMAL MODE</button>
+                <div class = "sub-menu">
+                    <label for = "color">Color of Square: </label>
+                    <input id = "color" type = "color" value = "#000000">  
+                </div>
+                <button id = "rainbow" class = "mode btn">RAINBOW MODE</button>
+                <button id = "shader" class = "mode btn">SHADER MODE</button>
+                <h3>CLEAR/REDRAW GRID </h3> 
+                <button id = "clear" class = "btn">CLEAR GRID</button>
+                <div class = "sub-menu">
+                    <label id = "sliderValue" for = "redraw"></label>
+                    <button id = "redraw" class = "btn">REDRAW GRID</button>
+                </div>
+                <div id = "slider">
+                    <div id = "dot"></div>
+                </div>
             </div>
-            <button id = "rainbow" class = "mode">RAINBOW MODE</button>
-            <button id = "shader" class = "mode">SHADER MODE</button>
-            <h3>CLEAR/REDRAW GRID </h3> 
-            <button id = "clear">CLEAR GRID</button>
-            <div>
-                <label id = "sliderValue" for = "redraw"></label>
-                <button id = "redraw">REDRAW GRID</button>
-            </div>
-            <div id = "slider">
-                <div id = "dot"></div>
-            </div>
+            <div id = "grid"></div>
         </div>
-        <div id = "grid"></div>
     </div>
 </body>
 </html>
