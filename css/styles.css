@@ -44,6 +44,11 @@
     border: 2px solid gray;
     display: flex;
     flex-wrap: wrap;
+    cursor: crosshair;
+}
+
+#color{
+    cursor: pointer;
 }
 
 #slider{
@@ -64,6 +69,7 @@
     height: 30px;
     border: none;
     border-radius: 50%;
+    cursor: pointer;
 }
 
 #slider:hover{
@@ -84,6 +90,7 @@
     background-color: lightgray;
     border: 1px solid lightgray;
     border-radius: 8px;
+    cursor: pointer;
 }
 
 .btn:hover{
